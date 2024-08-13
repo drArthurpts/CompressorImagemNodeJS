@@ -1,15 +1,17 @@
+const sharp = require('sharp');
 let path = process.argv[2];
 let width =  Number(process.argv[3]);
 
 function rezise(path, width) {
-    let sharp = require('sharp');
     sharp(path)
-        .resize(width)
-        .toFile('output.jpg', (err, info) => {
+        .resize({ width: width })
+        .toFile('./temp/output_resize.jpg', (err, info) => {
             if (err) {
                 console.log(err);
             } else {
-                console.log(info);
+                console.log("Imagem redimensionada com sucesso!");
             }
         });
 }
+
+rezise(path, width);
